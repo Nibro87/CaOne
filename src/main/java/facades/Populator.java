@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import dtos.CityInfoDTO;
+import dtos.HobbyDTO;
+import dtos.PersonDTO;
 import entities.CityInfo;
 import utils.EMF_Creator;
 
@@ -25,6 +27,8 @@ public class Populator {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
         EntityManager em = emf.createEntityManager();
+        PersonFacade personFacade = new PersonFacade();
+        personFacade.findByZipCode("2800");
 
 
 
@@ -34,6 +38,7 @@ public class Populator {
     public static void main(String[] args) {
         populate();
     }
+
 
 
 

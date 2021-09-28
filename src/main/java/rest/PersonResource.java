@@ -2,7 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entities.CityInfo;
+import dtos.CityInfoDTO;
 import facades.PersonFacade;
 import utils.EMF_Creator;
 
@@ -24,7 +24,7 @@ public class PersonResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String person(){
-        return "Person";
+        return "{\"msg\":\"Hello World\"}";
     }
 
 
@@ -33,7 +33,7 @@ public class PersonResource {
     @Path("/all")
     @Produces("application/json")
     public String getAllZipcodes(){
-        List<CityInfo> cityInfo = FACADE.getAllZipCodes();
+        List<CityInfoDTO> cityInfo = FACADE.getAllZipCodes();
         return new Gson().toJson(cityInfo);
     }
 

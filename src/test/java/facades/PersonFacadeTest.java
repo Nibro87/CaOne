@@ -1,5 +1,6 @@
 package facades;
 
+import dtos.PersonDTO;
 import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 
@@ -47,7 +48,8 @@ public class PersonFacadeTest {
     public void testAFacadeMethod() throws Exception {
         System.out.println("this test ran");
         PersonFacade personFacade = new PersonFacade();
-        personFacade.createPerson("N","l","e");
+        PersonDTO personDTO = new PersonDTO();
+        personFacade.createPerson(personDTO);
 
 
     }
