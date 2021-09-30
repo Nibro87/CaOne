@@ -1,10 +1,9 @@
 package facades;
 
 
-import dtos.CityInfoDTO;
-import dtos.HobbyDTO;
-import dtos.PersonDTO;
+import dtos.*;
 import entities.Person;
+import entities.Phone;
 
 import java.util.List;
 
@@ -20,6 +19,11 @@ public interface IPersonFacade {
 
     /// get all persons living in a given zipcode
        public List<Person> findByZipCode(String Zipcode);
+
+
+       /// get a persons information by phoneNumber
+    public List<Person> getByPhoneNumber(String Number);
+
 
     ///find all zipcodes
     List<CityInfoDTO> getAllZipCodes();

@@ -44,4 +44,16 @@ public class Phone implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }

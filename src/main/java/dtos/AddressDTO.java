@@ -1,5 +1,8 @@
 package dtos;
 
+import entities.Address;
+import entities.Person;
+
 public class AddressDTO {
 
 
@@ -10,10 +13,20 @@ public class AddressDTO {
     public AddressDTO() {
     }
 
+    public AddressDTO(Address address) {
+        this.street = address.getStreet();
+        this.additionalInfo = address.getAdditionalInfo();
+    }
+
     public AddressDTO(String street, String additionalInfo) {
+
         this.street = street;
         this.additionalInfo = additionalInfo;
+
     }
+
+
+
 
     public String getStreet() {
         return street;

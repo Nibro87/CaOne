@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Address {
@@ -12,10 +13,11 @@ public class Address {
     private String street;
     private String additionalInfo;
 
-    @OneToMany(mappedBy = "Address", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "Address",  cascade = CascadeType.PERSIST)
     List<Person> persons;
 
-    @ManyToOne CityInfo cityInfo;
+    @ManyToOne
+    CityInfo cityInfo;
 
 
     public Address() {
@@ -28,11 +30,13 @@ public class Address {
         this.cityInfo = cityInfo;
     }
 
-    public Address(String street, String additionalInfo, List<Person> persons) {
+    public Address(String street, String additionalInfo) {
         this.street = street;
         this.additionalInfo = additionalInfo;
-        this.persons = persons;
+
     }
+
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -72,5 +76,30 @@ public class Address {
 
     public void setCityInfo(CityInfo cityInfo) {
         this.cityInfo = cityInfo;
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return getStreet().equals(address.getStreet()) && getAdditionalInfo().equals(address.getAdditionalInfo()) && getPersons().equals(address.getPersons()) && getCityInfo().equals(address.getCityInfo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getStreet(), getAdditionalInfo(), getPersons(), getCityInfo());
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", additionalInfo='" + additionalInfo + '\'' +
+                ", persons=" + persons +
+                ", cityInfo=" + cityInfo +
+                '}';
     }
 }

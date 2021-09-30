@@ -1,8 +1,6 @@
 package facades;
 
-import dtos.CityInfoDTO;
-import dtos.HobbyDTO;
-import dtos.PersonDTO;
+import dtos.*;
 import entities.*;
 
 import javax.persistence.EntityManager;
@@ -36,6 +34,7 @@ public class PersonFacade implements IPersonFacade {
     @Override
     public PersonDTO createPerson(PersonDTO personDTO) {
         Person person = new Person(personDTO.getEmail(),personDTO.getFirstName(),personDTO.getLastName());
+
         EntityManager em = emf.createEntityManager();
     try {
         em.getTransaction().begin();
@@ -47,31 +46,58 @@ public class PersonFacade implements IPersonFacade {
     }
     }
 
+    public PersonDTO findById(Long id){
+        EntityManager em = emf.createEntityManager();
+        return new PersonDTO(em.find(Person.class, id));
+    }
+
+
+
 
     @Override
     public List<PersonDTO> findByHobby(HobbyDTO hobbyDTO) {
         return null;
     }
 
+
+
+
+
+
+
+
     @Override
     public List<Person> findByZipCode(String zipCode) {
 
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.address a where a.cityInfo =:zipcode",Person.class);
-        query.setParameter("zipcode",CityInfo);
-        List<Person> personList = query.getResultList();
-        return personList;
+
+        try {
+            TypedQuery<Person> query = em.createQuery("select a from Address a JOIN a.cityInfo c where c.zipCode =:zipcode", Person.class).setParameter("zipcode", zipCode);
+
+            return query.getResultList();
+        }finally {
+            em.close();
+        }
+        }
+
+    @Override
+    public List<Person> getByPhoneNumber(String number) {
+
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Person> query = em.createQuery("select p from Person p JOIN p.phones c where c.size =:number", Person.class).setParameter("number", number);
+            List<Person> personList = query.getResultList();
+            return personList;
+        }finally {
+            em.close();
+        }
+
+
 
 
 
 
     }
-
-
-
-
-
-
 
 
     @Override

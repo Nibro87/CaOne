@@ -1,5 +1,7 @@
 package entities;
 
+import dtos.PhoneDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -37,9 +39,6 @@ public class Person implements Serializable {
         this.lastName = lastName;
 
     }
-
-
-
 
 
 
@@ -86,6 +85,36 @@ public class Person implements Serializable {
 
     public void setPhones(List<Phone> phones) {
         this.phones = phones;
+    }
+
+    public List<Hobby> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobby> hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phones=" + phones +
+                ", hobbies=" + hobbies +
+                ", address=" + address +
+                '}';
     }
 
     @Override
