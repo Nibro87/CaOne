@@ -40,6 +40,15 @@ public class Person implements Serializable {
 
     }
 
+    public Person(String email, String firstName, String lastName, List<Phone> phones, List<Hobby> hobbies, Address address) {
+
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phones = phones;
+        this.hobbies = hobbies;
+        this.address = address;
+    }
 
 
 

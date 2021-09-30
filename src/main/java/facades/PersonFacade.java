@@ -55,9 +55,7 @@ public class PersonFacade implements IPersonFacade {
 
 
     @Override
-    public List<PersonDTO> findByHobby(HobbyDTO hobbyDTO) {
-        return null;
-    }
+    public List<PersonDTO> findPersonWithGivenHobby(HobbyDTO hobbyDTO) { return null; }
 
 
 
@@ -66,6 +64,7 @@ public class PersonFacade implements IPersonFacade {
 
 
 
+ ///get all persons living in a given city
     @Override
     public List<Person> findByZipCode(String zipCode) {
 
@@ -80,26 +79,38 @@ public class PersonFacade implements IPersonFacade {
         }
         }
 
+    /// get all information about a person given a phonenumber
     @Override
     public List<Person> getByPhoneNumber(String number) {
 
         EntityManager em = emf.createEntityManager();
         try {
-            TypedQuery<Person> query = em.createQuery("select p from Person p JOIN p.phones c where c.size =:number", Person.class).setParameter("number", number);
-            List<Person> personList = query.getResultList();
-            return personList;
+            TypedQuery<Person> query = em.createQuery("select p from Person p JOIN p.phones c where c.number =:number", Person.class).setParameter("number", number);
+            return query.getResultList();
+        }finally {
+            em.close();
+        }
+    }
+
+
+    public List<Person> getByHobby(String name){
+
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p Join p.hobbies h where h.name =:name", Person.class).setParameter("name",name);
+            return query.getResultList();
+
         }finally {
             em.close();
         }
 
-
-
-
-
-
     }
 
 
+
+
+
+    /// get a list of all zipcodes in denmark
     @Override
     public List<CityInfoDTO> getAllZipCodes(){
 

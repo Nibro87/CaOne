@@ -12,6 +12,11 @@ import javax.persistence.Persistence;
 
 import dtos.*;
 import entities.Address;
+import entities.Person;
+import entities.Phone;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -28,13 +33,13 @@ public class Populator {
         PersonFacade personFacade = new PersonFacade();
         AddressFacade addressFacade = new AddressFacade();
 
-        CityInfoDTO a = addressFacade.findCityByZipcode("0877");
+        ///CityInfoDTO a = addressFacade.findCityByZipcode("0877");
 
-        AddressDTO addressDTO = new AddressDTO("hvidovrevej","0877",a);
+        ///AddressDTO addressDTO = new AddressDTO("hvidovrevej","0877",a);
 
-        System.out.println(addressDTO);
+        ///System.out.println(addressDTO);
 
-        addressFacade.createAddress(addressDTO);
+        ///addressFacade.createAddress(addressDTO);
 
 
 
