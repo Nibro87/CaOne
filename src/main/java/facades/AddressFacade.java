@@ -1,11 +1,13 @@
 package facades;
 
 import dtos.AddressDTO;
+import dtos.CityInfoDTO;
+import dtos.PersonDTO;
 import entities.Address;
+import entities.CityInfo;
+import entities.Person;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
 public class AddressFacade {
 
@@ -28,21 +30,35 @@ public class AddressFacade {
         return instance;
     }
 
-    public AddressDTO createAddress(AddressDTO addressDTO){
+    public AddressDTO createAddress(AddressDTO addressDTO) {
 
         Address address = new Address(addressDTO.getStreet(), addressDTO.getAdditionalInfo());
 
         EntityManager em = emf.createEntityManager();
 
-        try{
+        try {
             em.getTransaction().begin();
             em.persist(address);
             em.getTransaction().commit();
             return new AddressDTO(address);
-        }finally {
+        } finally {
             em.close();
         }
-        
+    }
+
+
+    public CityInfoDTO findCityByZipcode(String zipcode){
+
+        CityInfo cityInfo = null;
+
+        EntityManager em = emf.createEntityManager();
+
+        Query c2 = em.createQuery("SELECT c FROM CityInfo c WHERE c.zipCode =:zipcode").setParameter("zipcode",zipcode);
+         cityInfo = (CityInfo) c2.getSingleResult();
+
+        return new CityInfoDTO(String.valueOf(cityInfo));
+    }
+
 
 
 
@@ -52,4 +68,4 @@ public class AddressFacade {
 
 
 
-}
+

@@ -26,14 +26,15 @@ public class Populator {
         EntityManager em = emf.createEntityManager();
 
         PersonFacade personFacade = new PersonFacade();
+        AddressFacade addressFacade = new AddressFacade();
 
+        CityInfoDTO a = addressFacade.findCityByZipcode("0877");
 
+        AddressDTO addressDTO = new AddressDTO("hvidovrevej","0877",a);
 
+        System.out.println(addressDTO);
 
-        PersonDTO person = personFacade.findById(1L);
-
-
-
+        addressFacade.createAddress(addressDTO);
 
 
 

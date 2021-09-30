@@ -3,11 +3,17 @@ package dtos;
 import entities.Address;
 import entities.Person;
 
+import java.util.List;
+
 public class AddressDTO {
 
 
     private String street;
     private String additionalInfo;
+    List<PersonDTO> personDTOS;
+    CityInfoDTO cityInfoDTO;
+
+
 
 
     public AddressDTO() {
@@ -25,8 +31,11 @@ public class AddressDTO {
 
     }
 
-
-
+    public AddressDTO(String street, String additionalInfo, CityInfoDTO cityInfoDTO) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.cityInfoDTO = cityInfoDTO;
+    }
 
     public String getStreet() {
         return street;
@@ -42,5 +51,15 @@ public class AddressDTO {
 
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressDTO{" +
+                "street='" + street + '\'' +
+                ", additionalInfo='" + additionalInfo + '\'' +
+                ", personDTOS=" + personDTOS +
+                ", cityInfoDTO=" + cityInfoDTO +
+                '}';
     }
 }
