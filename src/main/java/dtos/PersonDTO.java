@@ -5,6 +5,7 @@ import entities.Hobby;
 import entities.Person;
 import entities.Phone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDTO {
@@ -12,9 +13,10 @@ public class PersonDTO {
     String email;
     String firstName;
     String lastName;
-    private List<PhoneDTO> phone;
+    private List<PhoneDTO> phones;
     private List<HobbyDTO> hobby;
     Address address;
+
 
     public PersonDTO() {
     }
@@ -40,11 +42,26 @@ public class PersonDTO {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.phones = phone;
         this.hobby = hobby;
     }
 
+    public PersonDTO(String email, String firstName, String lastName, List<PhoneDTO> phones) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phones = phones;
+    }
 
+    public void addPhone(PhoneDTO phoneDTO) {
+        if(this.phones == null){
+            ArrayList<PhoneDTO> phones = new ArrayList<>();
+            phones.add(phoneDTO);
+            this.phones = phones;
+        }else {
+            this.phones.add(phoneDTO);
+        }
+    }
 
     public String getEmail() {
         return email;
@@ -71,11 +88,11 @@ public class PersonDTO {
     }
 
     public List<PhoneDTO> getPhone() {
-        return phone;
+        return phones;
     }
 
     public void setPhone(List<PhoneDTO> phone) {
-        this.phone = phone;
+        this.phones = phone;
     }
 
     public List<HobbyDTO> getHobby() {
@@ -100,7 +117,7 @@ public class PersonDTO {
                 "email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone=" + phone +
+                ", phone=" + phones +
                 ", hobby=" + hobby +
                 ", address=" + address +
                 '}';

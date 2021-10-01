@@ -30,9 +30,7 @@ public class AddressFacade {
         return instance;
     }
 
-    public AddressDTO createAddress(AddressDTO addressDTO) {
-
-        Address address = new Address(addressDTO.getStreet(), addressDTO.getAdditionalInfo());
+    public Address createAddress(Address address) {
 
         EntityManager em = emf.createEntityManager();
 
@@ -40,23 +38,21 @@ public class AddressFacade {
             em.getTransaction().begin();
             em.persist(address);
             em.getTransaction().commit();
-            return new AddressDTO(address);
+            return address;
         } finally {
             em.close();
         }
     }
 
 
-    public CityInfoDTO findCityByZipcode(String zipcode){
-
-        CityInfo cityInfo = null;
+    public CityInfo findCityByZipcode(String zipcode){
 
         EntityManager em = emf.createEntityManager();
 
-        Query c2 = em.createQuery("SELECT c FROM CityInfo c WHERE c.zipCode =:zipcode").setParameter("zipcode",zipcode);
-         cityInfo = (CityInfo) c2.getSingleResult();
+        TypedQuery<CityInfo> c2 = em.createQuery("SELECT c FROM CityInfo c WHERE c.zipCode =:zipcode",CityInfo.class).setParameter("zipcode",zipcode);
+        CityInfo cityInfo = c2.getSingleResult();
 
-        return new CityInfoDTO(String.valueOf(cityInfo));
+        return cityInfo;
     }
 
 

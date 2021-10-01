@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,10 +24,10 @@ public class Address {
     public Address() {
     }
 
-    public Address(String street, String additionalInfo, List<Person> persons, CityInfo cityInfo) {
+    public Address(String street, String additionalInfo, CityInfo cityInfo) {
         this.street = street;
         this.additionalInfo = additionalInfo;
-        this.persons = persons;
+
         this.cityInfo = cityInfo;
     }
 
@@ -36,6 +37,20 @@ public class Address {
 
     }
 
+    public void addPerson(Person person){
+
+        if(this.persons == null){
+            ArrayList<Person> persons = new ArrayList<>();
+            persons.add(person);
+            this.persons = persons;
+
+        }else{
+            this.persons.add(person);
+        }
+
+
+
+    }
 
 
     public static long getSerialVersionUID() {

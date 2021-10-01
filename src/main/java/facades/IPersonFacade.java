@@ -12,10 +12,7 @@ public interface IPersonFacade {
 
 
     /// create a person
-    PersonDTO createPerson(PersonDTO personDTO);
-
-
-
+    Person createPerson(Person person);
 
     List<PersonDTO> findPersonWithGivenHobby(HobbyDTO hobbyDTO);
 

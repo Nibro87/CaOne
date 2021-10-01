@@ -2,6 +2,7 @@ package facades;
 
 import dtos.HobbyDTO;
 import dtos.PersonDTO;
+import entities.Hobby;
 import entities.Person;
 
 import javax.persistence.EntityManager;
@@ -24,15 +25,15 @@ public class HobbyFacade {
         return instance;
     }
 
-    public HobbyDTO findByName(String name){
+    public Hobby findByName(String name){
 
         EntityManager em = emf.createEntityManager();
 
-        TypedQuery<String> h2 = em.createQuery("SELECT h FROM Hobby h WHERE h.name =?1",String.class).setParameter(name,1);
-        String hobby = h2.getSingleResult();
+        TypedQuery<Hobby> h2 = em.createQuery("SELECT h FROM Hobby h WHERE h.name =:name",Hobby.class).setParameter("name",name);
+        Hobby hobby = h2.getSingleResult();
 
 
-        return new HobbyDTO(hobby);
+        return hobby;
     }
 
 

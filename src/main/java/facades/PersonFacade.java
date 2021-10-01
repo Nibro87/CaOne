@@ -26,29 +26,22 @@ public class PersonFacade implements IPersonFacade {
 
 
 
-
-
-
-
-
     @Override
-    public PersonDTO createPerson(PersonDTO personDTO) {
-        Person person = new Person(personDTO.getEmail(),personDTO.getFirstName(),personDTO.getLastName());
-
+    public Person createPerson(Person person) {
         EntityManager em = emf.createEntityManager();
     try {
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();
-        return new PersonDTO(person);
+        return person;
     }finally {
         em.close();
     }
     }
 
-    public PersonDTO findById(Long id){
+    public Person findById(Long id){
         EntityManager em = emf.createEntityManager();
-        return new PersonDTO(em.find(Person.class, id));
+        return (em.find(Person.class, id));
     }
 
 

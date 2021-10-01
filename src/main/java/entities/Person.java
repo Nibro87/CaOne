@@ -4,6 +4,7 @@ import dtos.PhoneDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,7 +51,26 @@ public class Person implements Serializable {
         this.address = address;
     }
 
+    public void addPhone(Phone phone) {
+        if(this.phones == null){
+            ArrayList<Phone> phones = new ArrayList<>();
+            phones.add(phone);
+            this.phones = phones;
+        }else {
+            this.phones.add(phone);
+        }
+    }
 
+    public void addHobby(Hobby hobby){
+        if(this.hobbies == null){
+            ArrayList<Hobby> hobbies = new ArrayList<>();
+            hobbies.add(hobby);
+            this.hobbies = hobbies;
+        }else{
+            this.hobbies.add(hobby);
+        }
+
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

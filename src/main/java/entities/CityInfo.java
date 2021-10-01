@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,15 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
+    public void addAddress(Address address){
+        if (this.addressList == null){
+            ArrayList<Address> addressList = new ArrayList<>();
+            addressList.add(address);
+            this.addressList = addressList;
+        }else{
+            this.addressList.add(address);
+        }
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

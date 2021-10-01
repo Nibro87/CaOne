@@ -2,6 +2,7 @@ package entities;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -78,5 +79,21 @@ public class Hobby {
 
     public void setPersons(List<Person> persons) {
         this.persons = persons;
+    }
+
+    public void addPerson(Person person) {
+
+        if(this.persons == null){
+            ArrayList<Person> persons = new ArrayList<>();
+            persons.add(person);
+            this.persons = persons;
+        }else{
+            this.persons.add(person);
+        }
+
+
+
+
+
     }
 }
