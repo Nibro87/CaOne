@@ -4,6 +4,7 @@ package entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Hobby {
@@ -95,5 +96,28 @@ public class Hobby {
 
 
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Hobby)) return false;
+        Hobby hobby = (Hobby) o;
+        return Objects.equals(getName(), hobby.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
+
+    public String toString() {
+        return "Hobby{" +
+                "name='" + name + '\'' +
+                ", wikiLink='" + wikiLink + '\'' +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", persons=" + persons +
+                '}';
     }
 }

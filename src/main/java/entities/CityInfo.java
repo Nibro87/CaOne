@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class CityInfo implements Serializable {
@@ -78,5 +79,18 @@ public class CityInfo implements Serializable {
                 ", city='" + city + '\'' +
                 ", addressList=" + addressList +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CityInfo)) return false;
+        CityInfo cityInfo = (CityInfo) o;
+        return Objects.equals(getZipCode(), cityInfo.getZipCode()) && Objects.equals(getCity(), cityInfo.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getZipCode(), getCity());
     }
 }

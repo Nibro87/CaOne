@@ -1,11 +1,15 @@
 package facades;
 
+import dtos.CityInfoDTO;
 import dtos.PersonDTO;
+import entities.*;
 import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,6 +19,9 @@ public class PersonFacadeTest {
 
     private static EntityManagerFactory emf;
     private static PersonFacade personFacade;
+    private static AddressFacade addressFacade;
+    private static HobbyFacade hobbyFacade;
+    CityInfo cityInfo;
 
     public PersonFacadeTest() {
     }
@@ -23,6 +30,8 @@ public class PersonFacadeTest {
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
        personFacade = PersonFacade.getPersonFacade(emf);
+       addressFacade = AddressFacade.getAddressFacade(emf);
+       hobbyFacade = HobbyFacade.getHobbyFacade(emf);
     }
 
     @AfterAll
@@ -56,11 +65,44 @@ public class PersonFacadeTest {
 
     @Test
     public void testgetAllZipcodes(){
-        PersonFacade personFacade = new PersonFacade();
+        List<CityInfoDTO> expected = personFacade.getAllZipCodes();
+        int actual = 1352;
 
+        assertEquals(expected.size(),actual);
+
+    }
+
+    @Test
+    public void findByZipCode(){
+
+        CityInfo actual =addressFacade.findCityByZipcode("0555");
+        CityInfo expected = new CityInfo("0555","Scanning");
+        assertEquals(expected,actual);
+
+
+    }
+
+    @Test
+    public void findHobbyByName(){
+
+        Hobby actual = hobbyFacade.findByName("Airsoft");
+        Hobby expected = new Hobby("Airsoft","https://en.wikipedia.org/wiki/Airsoft","General"," Konkurrence");
+        assertEquals(expected,actual);
 
 
 
     }
+
+
+
+    @Test
+    public void createPerson(){
+
+
+
+    }
+
+
+
 
 }

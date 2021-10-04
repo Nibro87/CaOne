@@ -31,14 +31,6 @@ public class Populator {
         PersonFacade personFacade = new PersonFacade();
         AddressFacade addressFacade = new AddressFacade();
         HobbyFacade hobbyFacade = new HobbyFacade();
-        ///CityInfoDTO a = addressFacade.findCityByZipcode("0877");
-
-        ///AddressDTO addressDTO = new AddressDTO("hvidovrevej","0877",a);
-
-        ///System.out.println(addressDTO);
-
-        ///addressFacade.createAddress(addressDTO);
-
 
 
 
@@ -48,12 +40,14 @@ public class Populator {
 
         CityInfo cityInfo =addressFacade.findCityByZipcode("0555");
 
+        System.out.println(cityInfo.getCity());
+
         cityInfo.addAddress(address);
         address.setCityInfo(cityInfo);
 
         Hobby hobby = hobbyFacade.findByName("Airsoft");
 
-//        List<Phone> phones = new ArrayList<>();
+
         Phone phone = new Phone("1234","hej");
 
         address.addPerson(person);
@@ -61,13 +55,13 @@ public class Populator {
         person.setAddress(address);
         phone.setPerson(person);
         hobby.addPerson(person);
-        //        phones.add(phone);
+
 
         person.addHobby(hobby);
         person.addPhone(phone);
         personFacade.createPerson(person);
 
-        System.out.println(personFacade.findById(2L).getAddress().getPersons().get(0));
+
 
 
 
