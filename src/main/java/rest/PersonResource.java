@@ -38,6 +38,7 @@ public class PersonResource {
     public Response FindAllPersonsInGivenZipcode(@PathParam("zipcode") String zipcode){
         List<Person> addressList = (List<Person>) addressFacade.findCityByZipcode(zipcode);
 
+        return null;
     }
 
 
