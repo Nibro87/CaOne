@@ -89,11 +89,24 @@ public class PersonFacadeTest {
         Hobby expected = new Hobby("Airsoft","https://en.wikipedia.org/wiki/Airsoft","General"," Konkurrence");
         assertEquals(expected,actual);
 
+    }
 
+    @Test
+    public void findPersonById(){
+
+        Person actual = personFacade.findById(1L);
+        Person expected = new Person(null,null,null);
+
+        assertEquals(expected,actual);
 
     }
 
 
+    @Test
+    public void deletePerson(){
+
+
+    }
 
     @Test
     public void createPerson(){

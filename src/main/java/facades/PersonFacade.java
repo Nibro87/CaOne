@@ -14,6 +14,7 @@ public class PersonFacade implements IPersonFacade {
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
     private static PersonFacade instance;
     private Object CityInfo;
+    private Object Person;
 
     public static PersonFacade getPersonFacade(EntityManagerFactory _emf) {
         if (instance == null) {
@@ -44,6 +45,21 @@ public class PersonFacade implements IPersonFacade {
         return (em.find(Person.class, id));
     }
 
+    public Person deletePerson(Long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Person person = em.find(Person.class, id);
+            em.remove(person);
+            em.getTransaction().commit();
+            return new Person(person);
+        } finally {
+            em.close();
+        }
+
+
+
+    }
 
 
 
@@ -85,7 +101,7 @@ public class PersonFacade implements IPersonFacade {
         }
     }
 
-
+/// get all persons with a given hobby
     public List<Person> getByHobby(String name){
 
         EntityManager em = emf.createEntityManager();

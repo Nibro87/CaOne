@@ -27,8 +27,8 @@ public class PersonResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String person(){
-        return "{\"msg\":\"Hello World\"}";
+    public Response getServerIsUp(){
+        return Response.ok(GSON.toJson("hello"),MediaType.APPLICATION_JSON).build();
     }
 
 
@@ -36,7 +36,8 @@ public class PersonResource {
     @Path("zipcode/{zipcode}")
     @Produces("application/json")
     public Response FindAllPersonsInGivenZipcode(@PathParam("zipcode") String zipcode){
-        List<Person> addressList = (List<Person>) addressFacade.findCityByZipcode(zipcode);
+        List<Person> personList= (List<Person>) addressFacade.findCityByZipcode(zipcode);
+
 
         return null;
     }
@@ -48,9 +49,9 @@ public class PersonResource {
     @GET
     @Path("/allZipcodes")
     @Produces("application/json")
-    public String getAllZipcodes(){
-        List<CityInfoDTO> cityInfo = FACADE.getAllZipCodes();
-        return new Gson().toJson(cityInfo);
+    public Response getAllZipcodes(){
+
+        return Response.ok(GSON.toJson(FACADE.getAllZipCodes()),"application/json").build();
     }
 
 

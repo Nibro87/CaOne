@@ -35,7 +35,7 @@ public class Populator {
 
 
 
-        Person person = new Person("email","firstname","lastname",null, null, null);
+        /*Person person = new Person("email","firstname","lastname",null, null, null);
         Address address = new Address("hvidovrevej","0555",null);
 
         CityInfo cityInfo =addressFacade.findCityByZipcode("0555");
@@ -59,7 +59,7 @@ public class Populator {
 
         person.addHobby(hobby);
         person.addPhone(phone);
-        personFacade.createPerson(person);
+        personFacade.createPerson(person);*/
 
 
 

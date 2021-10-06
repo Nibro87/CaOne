@@ -51,6 +51,21 @@ public class Person implements Serializable {
         this.address = address;
     }
 
+    public Person(Person person){
+        this.email = person.getEmail();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.phones = person.getPhones();
+        this.phones = person.getPhones();
+        this.hobbies = person.getHobbies();
+        this.address = person.getAddress();
+    }
+
+    public Person(long id) {
+        this.id = id;
+    }
+
+
     public void addPhone(Phone phone) {
         if(this.phones == null){
             ArrayList<Phone> phones = new ArrayList<>();
