@@ -59,13 +59,29 @@ public class PersonFacade implements IPersonFacade {
 
 
 
+
+
+
+
     }
 
 
 
     @Override
-    public List<PersonDTO> findPersonWithGivenHobby(HobbyDTO hobbyDTO) { return null; }
 
+    public List<Person> getAllPersons() {
+
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            TypedQuery<Person> query = em.createQuery("select p from Person p", Person.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+
+
+    }
 
 
 

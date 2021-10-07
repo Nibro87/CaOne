@@ -14,7 +14,9 @@ public interface IPersonFacade {
     /// create a person
     Person createPerson(Person person);
 
-    List<PersonDTO> findPersonWithGivenHobby(HobbyDTO hobbyDTO);
+
+
+    List<Person> getAllPersons();
 
     /// get all persons living in a given zipcode
        public List<Person> findByZipCode(String Zipcode);

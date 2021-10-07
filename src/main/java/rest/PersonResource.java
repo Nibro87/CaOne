@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.CityInfoDTO;
 
+import entities.CityInfo;
 import entities.Person;
 import facades.AddressFacade;
 import facades.PersonFacade;
@@ -36,7 +37,6 @@ public class PersonResource {
     @Path("zipcode/{zipcode}")
     @Produces("application/json")
     public Response FindAllPersonsInGivenZipcode(@PathParam("zipcode") String zipcode){
-        List<Person> personList= (List<Person>) addressFacade.findCityByZipcode(zipcode);
 
 
         return null;
@@ -68,7 +68,21 @@ public class PersonResource {
     }
 
 
+    @GET
+    @Path("{id}")
+    @Produces("application/json")
+public Response getpersonById(@PathParam("id")long id){
+        Person person = FACADE.findById(id);
+        return Response.ok(GSON.toJson(person),"application/json").build();
+    }
 
+    @GET
+    @Path("hobby/{hobby}")
+    @Produces("application/json")
+    public Response getAllPersonsGivenAHobby(@PathParam("hobby") String hobby){
+        List<Person> personList = FACADE.getByHobby(hobby);
+        return Response.ok(GSON.toJson(hobby),"application/json").build();
+    }
 
 
 }
